@@ -36,14 +36,44 @@ export function LoginPage() {
         <p className="eyebrow">Movie Tickets</p>
         <h1>Sign in</h1>
         <p className="muted">Browse movies and book your seats.</p>
-        <Feedback message={(location.state as { registered?: boolean } | null)?.registered ? 'Account created. Sign in to continue.' : ''} />
+        <Feedback
+          message={
+            (location.state as { registered?: boolean } | null)?.registered
+              ? 'Account created. Sign in to continue.'
+              : ''
+          }
+        />
         <form className="form-stack" onSubmit={handleSubmit}>
-          <FormField label="Email"><input className="form-control" type="email" autoComplete="email" maxLength={150} value={email} onChange={(e) => setEmail(e.target.value)} required /></FormField>
-          <FormField label="Password"><input className="form-control" type="password" autoComplete="current-password" maxLength={72} value={password} onChange={(e) => setPassword(e.target.value)} required /></FormField>
+          <FormField label="Email">
+            <input
+              className="form-control"
+              type="email"
+              autoComplete="email"
+              maxLength={150}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </FormField>
+          <FormField label="Password">
+            <input
+              className="form-control"
+              type="password"
+              autoComplete="current-password"
+              maxLength={72}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </FormField>
           <Feedback error={error} />
-          <button className="btn btn-primary" disabled={loading}>{loading ? 'Signing in...' : 'Sign in'}</button>
+          <button className="btn btn-primary" disabled={loading}>
+            {loading ? 'Signing in...' : 'Sign in'}
+          </button>
         </form>
-        <p className="form-note">New customer? <Link to="/signup">Create an account</Link></p>
+        <p className="form-note">
+          New customer? <Link to="/signup">Create an account</Link>
+        </p>
       </section>
     </main>
   );

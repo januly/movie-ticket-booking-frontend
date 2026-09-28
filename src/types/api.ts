@@ -22,3 +22,36 @@ export interface AuthResponseDTO {
   expiresIn: number;
   user: UserDTO;
 }
+
+export type MovieStatus = 'UPCOMING' | 'NOW_SHOWING' | 'ENDED';
+export type TheatreStatus = 'ACTIVE' | 'INACTIVE';
+export type ShowStatus = 'SCHEDULED' | 'COMPLETED' | 'CANCELLED';
+
+export interface MovieDTO {
+  movieId: string;
+  title: string;
+  description: string;
+  duration: number;
+  language: string;
+  genre: string;
+  releaseDate: string;
+  status: MovieStatus;
+}
+
+export interface TheatreDTO {
+  theatreId: string;
+  theatreName: string;
+  location: string;
+  capacity: number;
+  status: TheatreStatus;
+}
+
+export interface ShowDTO {
+  showId: string;
+  movieId: string;
+  theatreId: string;
+  showDate: string;
+  showTime: string;
+  ticketPrice: number;
+  status: ShowStatus;
+}

@@ -26,6 +26,7 @@ module.exports = {
     new HtmlWebpackPlugin({ template: './public/index.html' }),
   ],
   devServer: {
+    host: 'localhost',
     historyApiFallback: true,
     hot: true,
     open: false,
