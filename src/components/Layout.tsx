@@ -2,7 +2,7 @@ import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
 
 export function Layout() {
-  const { session, logout } = useAuth();
+  const { session, logout, hasRole } = useAuth();
   const navigate = useNavigate();
   function handleLogout() {
     logout();
@@ -23,6 +23,15 @@ export function Layout() {
           <NavLink to="/movies">Movies</NavLink>
           <NavLink to="/theatres">Theatres</NavLink>
           <NavLink to="/shows">Shows</NavLink>
+          {hasRole(['ADMIN']) && (
+            <>
+              <span className="nav-heading">Administration</span>
+              <NavLink to="/admin/movies">Manage movies</NavLink>
+              <NavLink to="/admin/theatres">Manage theatres</NavLink>
+              <NavLink to="/admin/shows">Manage shows</NavLink>
+              <NavLink to="/admin/users">Users</NavLink>
+            </>
+          )}
         </nav>
         <div className="user-box">
           <strong>{session?.user.name}</strong>
