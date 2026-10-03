@@ -55,3 +55,26 @@ export interface ShowDTO {
   ticketPrice: number;
   status: ShowStatus;
 }
+
+export type BookingStatus = 'PENDING' | 'CONFIRMED' | 'CANCELLED';
+
+export interface BookingRequestDTO {
+  showId: string;
+  seatNumbers: string[];
+  numberOfTickets: number;
+}
+
+export interface BookingDTO extends BookingRequestDTO {
+  bookingId: string;
+  userId: string;
+  totalAmount: number;
+  bookingDate: string;
+  status: BookingStatus;
+}
+
+export interface SeatAvailabilityDTO {
+  showId: string;
+  capacity: number;
+  bookedSeats: string[];
+  availableSeats: string[];
+}

@@ -1,7 +1,10 @@
 import { ApiClient } from './ApiClient';
-import type { ShowDTO } from '../types/api';
+import type { ShowDTO, SeatAvailabilityDTO } from '../types/api';
 
 export class ShowService {
+  static getSeats(id: string) {
+    return ApiClient.request<SeatAvailabilityDTO>(`/shows/${encodeURIComponent(id)}/seats`);
+  }
   static create(data: ShowDTO) {
     return ApiClient.request<ShowDTO>('/shows', { method: 'POST', data });
   }

@@ -7,6 +7,115 @@ body {
   background: #f3f5f6;
 }
 
+.booking-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+.booking-list {
+  display: grid;
+  gap: 18px;
+}
+.booking-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+.booking-reference {
+  font-size: 12px;
+  color: #63716d;
+  overflow-wrap: anywhere;
+}
+.booking-summary .detail-list {
+  grid-template-columns: 1fr 1fr;
+}
+.seat-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 20px 0;
+  font-size: 13px;
+  color: #63716d;
+}
+.seat-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.seat-key {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 1px solid #9fbbb0;
+  border-radius: 3px;
+  background: #fff;
+}
+.seat-key.selected {
+  background: #21745b;
+  border-color: #21745b;
+}
+.seat-key.booked {
+  background: #dbe2df;
+  border-color: #dbe2df;
+}
+.screen-label {
+  text-align: center;
+  background: #eef4f1;
+  border-top: 3px solid #9fbbb0;
+  border-radius: 4px;
+  color: #63716d;
+  padding: 8px;
+  margin: 0 0 24px 28px;
+  font-size: 13px;
+}
+.seat-map {
+  display: grid;
+  gap: 10px;
+}
+.seat-row {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+}
+.row-label {
+  font-size: 12px;
+  color: #63716d;
+}
+.seat-buttons {
+  display: grid;
+  grid-template-columns: repeat(10, minmax(0, 1fr));
+  gap: 5px;
+}
+.seat {
+  min-height: 36px;
+  padding: 4px 0;
+  font-size: 11px;
+  color: #21745b;
+  background: #fff;
+  border: 1px solid #9fbbb0;
+  border-radius: 5px;
+}
+.seat.selected {
+  background: #21745b;
+  color: #fff;
+  border-color: #21745b;
+}
+.seat.booked {
+  background: #dbe2df;
+  color: #63716d;
+  border-color: #dbe2df;
+}
+.seat:disabled {
+  cursor: not-allowed;
+}
+.seat:focus-visible {
+  outline: 3px solid #17202a;
+  outline-offset: 2px;
+}
+
 .actions {
   display: flex;
   align-items: center;
@@ -280,6 +389,9 @@ h2 {
 }
 
 @media (max-width: 900px) {
+  .booking-layout {
+    grid-template-columns: 1fr;
+  }
   .nav-heading {
     grid-column: 1 / -1;
   }
@@ -313,6 +425,12 @@ h2 {
   }
 }
 @media (max-width: 560px) {
+  .seat-buttons {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+  .booking-header {
+    flex-wrap: wrap;
+  }
   .auth-card,
   .main-panel {
     padding: 18px;

@@ -23,6 +23,7 @@ export function Layout() {
           <NavLink to="/movies">Movies</NavLink>
           <NavLink to="/theatres">Theatres</NavLink>
           <NavLink to="/shows">Shows</NavLink>
+          {hasRole(['CUSTOMER']) && <NavLink to="/bookings">My bookings</NavLink>}
           {hasRole(['ADMIN']) && (
             <>
               <span className="nav-heading">Administration</span>
@@ -30,6 +31,7 @@ export function Layout() {
               <NavLink to="/admin/theatres">Manage theatres</NavLink>
               <NavLink to="/admin/shows">Manage shows</NavLink>
               <NavLink to="/admin/users">Users</NavLink>
+              <NavLink to="/admin/bookings">Bookings</NavLink>
             </>
           )}
         </nav>

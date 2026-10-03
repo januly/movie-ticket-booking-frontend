@@ -12,6 +12,9 @@ import { ManageMoviesPage } from './pages/ManageMoviesPage';
 import { ManageTheatresPage } from './pages/ManageTheatresPage';
 import { ManageShowsPage } from './pages/ManageShowsPage';
 import { UsersPage } from './pages/UsersPage';
+import { SeatsPage } from './pages/SeatsPage';
+import { BookingsPage } from './pages/BookingsPage';
+import { AdminBookingsPage } from './pages/AdminBookingsPage';
 
 export function App() {
   return (
@@ -34,6 +37,13 @@ export function App() {
             <Route path="/admin/theatres" element={<ManageTheatresPage />} />
             <Route path="/admin/shows" element={<ManageShowsPage />} />
             <Route path="/admin/users" element={<UsersPage />} />
+            <Route path="/admin/bookings" element={<AdminBookingsPage />} />
+          </Route>
+        </Route>
+        <Route element={<ProtectedRoute roles={['CUSTOMER']} />}>
+          <Route element={<Layout />}>
+            <Route path="/shows/:id/seats" element={<SeatsPage />} />
+            <Route path="/bookings" element={<BookingsPage />} />
           </Route>
         </Route>
         <Route path="*" element={<Navigate to="/movies" replace />} />

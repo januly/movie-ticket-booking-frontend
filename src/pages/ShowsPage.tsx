@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useAuth } from '../auth/AuthContext';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Feedback } from '../components/Feedback';
 import { FormField } from '../components/FormField';
@@ -11,6 +12,7 @@ import type { MovieDTO, TheatreDTO, ShowDTO } from '../types/api';
 import { dateLabel, timeLabel, money, isFutureShow } from '../utils/format';
 
 export function ShowsPage() {
+  const { hasRole } = useAuth();
   const [params, setParams] = useSearchParams();
   const movieId = params.get('movieId') || '';
   const theatreId = params.get('theatreId') || '';
@@ -139,6 +141,7 @@ export function ShowsPage() {
                 <th>Date</th>
                 <th>Time</th>
                 <th>Ticket price</th>
+                {hasRole(['CUSTOMER']) && <th>Booking</th>}
               </tr>
             </thead>
             <tbody>
@@ -155,6 +158,16 @@ export function ShowsPage() {
                   <td className="text-nowrap">{dateLabel(show.showDate)}</td>
                   <td className="text-nowrap">{timeLabel(show.showTime)}</td>
                   <td className="text-nowrap">{money(show.ticketPrice)}</td>
+                  {hasRole(['CUSTOMER']) && (
+                    <td>
+                      <Link
+                        className="btn btn-primary btn-sm text-nowrap"
+                        to={`/shows/${show.showId}/seats`}
+                      >
+                        Select seats
+                      </Link>
+                    </td>
+                  )}
                 </tr>
               ))}
             </tbody>
