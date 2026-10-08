@@ -15,6 +15,8 @@ import { UsersPage } from './pages/UsersPage';
 import { SeatsPage } from './pages/SeatsPage';
 import { BookingsPage } from './pages/BookingsPage';
 import { AdminBookingsPage } from './pages/AdminBookingsPage';
+import { PaymentPage } from './pages/PaymentPage';
+import { AdminPaymentsPage } from './pages/AdminPaymentsPage';
 
 export function App() {
   return (
@@ -29,6 +31,7 @@ export function App() {
             <Route path="/theatres" element={<TheatresPage />} />
             <Route path="/shows" element={<ShowsPage />} />
             <Route path="/access-denied" element={<AccessDeniedPage />} />
+            <Route path="/bookings/:id/payment" element={<PaymentPage />} />
           </Route>
         </Route>
         <Route element={<ProtectedRoute roles={['ADMIN']} />}>
@@ -38,6 +41,7 @@ export function App() {
             <Route path="/admin/shows" element={<ManageShowsPage />} />
             <Route path="/admin/users" element={<UsersPage />} />
             <Route path="/admin/bookings" element={<AdminBookingsPage />} />
+            <Route path="/admin/payments" element={<AdminPaymentsPage />} />
           </Route>
         </Route>
         <Route element={<ProtectedRoute roles={['CUSTOMER']} />}>

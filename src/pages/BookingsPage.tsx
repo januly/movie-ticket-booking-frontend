@@ -85,6 +85,22 @@ export function BookingsPage() {
               movie={movies.find((movie) => movie.movieId === show?.movieId)}
               theatre={theatres.find((theatre) => theatre.theatreId === show?.theatreId)}
             >
+              {booking.paymentId ? (
+                <Link
+                  className="btn btn-outline-primary"
+                  to={`/bookings/${booking.bookingId}/payment`}
+                >
+                  View payment
+                </Link>
+              ) : (
+                booking.status === 'PENDING' &&
+                show &&
+                isFutureShow(show) && (
+                  <Link className="btn btn-primary" to={`/bookings/${booking.bookingId}/payment`}>
+                    Pay now
+                  </Link>
+                )
+              )}
               {booking.status !== 'CANCELLED' && show && isFutureShow(show) && (
                 <button
                   className="btn btn-outline-danger"

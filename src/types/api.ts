@@ -70,6 +70,7 @@ export interface BookingDTO extends BookingRequestDTO {
   totalAmount: number;
   bookingDate: string;
   status: BookingStatus;
+  paymentId: string | null;
 }
 
 export interface SeatAvailabilityDTO {
@@ -77,4 +78,16 @@ export interface SeatAvailabilityDTO {
   capacity: number;
   bookedSeats: string[];
   availableSeats: string[];
+}
+
+export type PaymentStatus = 'PENDING' | 'COMPLETED' | 'FAILED' | 'REFUNDED';
+export type PaymentMethod = 'CARD' | 'CASH' | 'BANK_TRANSFER';
+
+export interface PaymentDTO {
+  paymentId: string;
+  bookingId: string;
+  amount: number;
+  paymentDate: string;
+  paymentMethod: PaymentMethod;
+  status: PaymentStatus;
 }

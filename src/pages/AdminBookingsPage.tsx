@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { BookingCard } from '../components/BookingCard';
 import { Feedback } from '../components/Feedback';
 import { PageHeader } from '../components/PageHeader';
@@ -88,6 +89,14 @@ export function AdminBookingsPage() {
               theatre={theatres.find((theatre) => theatre.theatreId === show?.theatreId)}
               customerName={users.find((user) => user.id === booking.userId)?.name}
             >
+              {booking.paymentId && (
+                <Link
+                  className="btn btn-outline-primary"
+                  to={`/bookings/${booking.bookingId}/payment`}
+                >
+                  View payment
+                </Link>
+              )}
               <label className="form-field">
                 Booking status
                 <select
