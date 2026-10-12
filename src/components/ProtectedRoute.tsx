@@ -3,10 +3,16 @@ import { useAuth } from '../auth/AuthContext';
 import type { Role } from '../types/api';
 
 export function ProtectedRoute({ roles }: { roles?: Role[] }) {
-  const { isLoggedIn, hasRole } = useAuth();
+  const { isLoggedIn, hasLoggedOut, hasRole } = useAuth();
   const location = useLocation();
   if (!isLoggedIn) {
-    return <Navigate to="/login" replace state={{ from: location.pathname + location.search }} />;
+    return (
+      <Navigate
+        to="/login"
+        replace
+        state={{ from: hasLoggedOut ? '/movies' : location.pathname + location.search }}
+      />
+    );
   }
   if (roles && !hasRole(roles)) return <Navigate to="/access-denied" replace />;
   return <Outlet />;

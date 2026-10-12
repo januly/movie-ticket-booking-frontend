@@ -29,7 +29,7 @@ export function LoginPage() {
     }
   }
 
-  if (isLoggedIn) return <Navigate to="/movies" replace />;
+  if (isLoggedIn) return <Navigate to={from} replace />;
   return (
     <main className="auth-page">
       <section className="auth-card">
